@@ -292,13 +292,6 @@
         console.error('Erro ao buscar civilizações:', error);
     }
 }
-window.onload = function() {
-    document.getElementById('civilizacao-select-1').value = 13; // Define o ID inicial para a primeira civilização
-    document.getElementById('civilizacao-select-2').value = 7;  // Define o ID inicial para a segunda civilização
-
-    // Chama a função de pesquisa automaticamente ao carregar a página
-    pesquisarUnidades();
-};
 async function fetchUnidades(civilizacaoId) {
     const response = await fetch(`/civilizacoes_ptbr/${civilizacaoId}/unidades_ptbr`);
     const unidades = await response.json();
