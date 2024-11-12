@@ -56,6 +56,12 @@ router.get('/civilizacoes', async (req, res) => {
   }
 });
 
+router.get('/es', async (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'es.html'));
+});
+router.get('/ptbr', async (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'ptbr.html'));
+});
 // Configurar middleware para servir arquivos estáticos
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(router); // Utiliza o roteador configurado
