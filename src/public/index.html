@@ -1,34 +1,180 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" href="images/icone3.png" type="image/png">
-    <title>Inventário Produtos Químicos</title>
-    <link rel="stylesheet" href="css/style.css">
-    <script src="https://kit.fontawesome.com/915b45d802.js" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seleção de Civilizações e Unidades</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            width: 300px;
+            margin-bottom: 20px;
+        }
+        select, button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        #resultado {
+            display: flex;
+            gap: 20px;
+            width: 100%;
+            justify-content: center;
+        }
+        .civilizacao-unidades {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            width: 45%;
+        }
+        .civilizacao-unidades h3 {
+            margin-top: 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            padding: 8px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
 </head>
 <body>
-<div id="header">
     <div class="container">
-        <div class="login-box">
-            <img src="images/logomenulogin.png" class="logo">
-            <h2>Login</h2>
-            <form id="login-form">
-                <div class="inputBox">
-                    <input type="text" name="email" required>
-                    <span>Email</span>
-                </div>
-                <div class="inputBox">
-                    <input type="password" id="password" name="senha" required>
-                    <span>Senha</span>
-                    <div id="toggle" onclick="showHide();"></div>
-                </div>
-                <button type="submit" name="acao" value="logar">Entrar</button>
-                <div id="error-message" style="color: red; display: none;"></div>
-            </form>
+        <label for="civilizacao-select-1">Escolha a primeira civilização:</label>
+        <select id="civilizacao-select-1">
+            <option value="">Selecione...</option>
+        </select>
+
+        <label for="civilizacao-select-2">Escolha a segunda civilização:</label>
+        <select id="civilizacao-select-2">
+            <option value="">Selecione...</option>
+        </select>
+
+        <button onclick="pesquisarUnidades()">Pesquisar</button>
+    </div>
+
+    <div id="resultado">
+        <div id="civilizacao1-unidades" class="civilizacao-unidades">
+            <h3>Civilização 1</h3>
+            <table id="tabela-unidades-1">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Habilidade Especial</th>
+                        <th>Forte Contra</th>
+                        <th>Fraco Contra</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div id="civilizacao2-unidades" class="civilizacao-unidades">
+            <h3>Civilização 2</h3>
+            <table id="tabela-unidades-2">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Habilidade Especial</th>
+                        <th>Forte Contra</th>
+                        <th>Fraco Contra</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
         </div>
     </div>
-</div>
-<script src="js/index.js"></script>
+
+    <script>
+        async function fetchCivilizacoes() {
+            try {
+                const response = await fetch('/civilizacoes');
+                const civilizacoes = await response.json();
+                
+                const select1 = document.getElementById('civilizacao-select-1');
+                const select2 = document.getElementById('civilizacao-select-2');
+                
+                civilizacoes.forEach(civ => {
+                    const option1 = document.createElement('option');
+                    option1.value = civ.id;
+                    option1.textContent = civ.nome;
+                    select1.appendChild(option1);
+
+                    const option2 = document.createElement('option');
+                    option2.value = civ.id;
+                    option2.textContent = civ.nome;
+                    select2.appendChild(option2);
+                });
+            } catch (error) {
+                console.error('Erro ao buscar civilizações:', error);
+            }
+        }
+
+        async function fetchUnidades(civilizacaoId) {
+            const response = await fetch(`/civilizacoes/${civilizacaoId}/unidades`);
+            return response.json();
+        }
+
+        async function pesquisarUnidades() {
+            const civ1Id = document.getElementById('civilizacao-select-1').value;
+            const civ2Id = document.getElementById('civilizacao-select-2').value;
+
+            if (!civ1Id || !civ2Id) {
+                alert('Por favor, selecione ambas as civilizações.');
+                return;
+            }
+
+            const unidades1 = await fetchUnidades(civ1Id);
+            const unidades2 = await fetchUnidades(civ2Id);
+
+            const tabelaUnidades1 = document.getElementById('tabela-unidades-1').querySelector('tbody');
+            const tabelaUnidades2 = document.getElementById('tabela-unidades-2').querySelector('tbody');
+            
+            tabelaUnidades1.innerHTML = '';
+            tabelaUnidades2.innerHTML = '';
+
+            unidades1.forEach(unidade => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${unidade.nome}</td>
+                    <td>${unidade.habilidade_especial || ''}</td>
+                    <td>${unidade.forte_contra || ''}</td>
+                    <td>${unidade.fraco_contra || ''}</td>
+                `;
+                tabelaUnidades1.appendChild(row);
+            });
+
+            unidades2.forEach(unidade => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${unidade.nome}</td>
+                    <td>${unidade.habilidade_especial || ''}</td>
+                    <td>${unidade.forte_contra || ''}</td>
+                    <td>${unidade.fraco_contra || ''}</td>
+                `;
+                tabelaUnidades2.appendChild(row);
+            });
+        }
+
+        fetchCivilizacoes();
+    </script>
 </body>
 </html>
