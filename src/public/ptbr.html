@@ -200,56 +200,69 @@
     background-color: #555;
 }
 
+ /* Estilos gerais para o select */
+ .language-selector {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
+        #language-select {
+            padding: 10px;
+            font-size: 14px;
+            display: inline-block;
+            width: 250px;
+            cursor: pointer;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            position: relative;
+        }
 
-.language-selector {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
+        #language-select option {
+            padding-left: 30px; /* Espaçamento para as bandeiras */
+            background-repeat: no-repeat;
+            background-position: left center;
+            background-size: 20px 20px; /* Ajuste de tamanho da bandeira */
+        }
 
-    #language-select {
-        padding: 8px 15px;
-        font-size: 14px;
-        display: inline-block;
-        width: auto;
-        cursor: pointer;
-    }
+        /* Adicionando bandeiras como fundo */
+        #language-select option[value='/ptbr'] {
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Flag_of_Brazil.svg/320px-Flag_of_Brazil.svg.png');
+        }
 
-    /* Estilos adicionais para melhorar o visual */
-    option {
-        padding-left: 20px;
-    }
+        #language-select option[value='/es'] {
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Flag_of_Spain.svg/320px-Flag_of_Spain.svg.png');
+        }
 
-    option[data-icon] {
-        background-position: 5px center;
-        background-repeat: no-repeat;
-    }
+        #language-select option[value='/'] {
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png');
+        }
 
-    /* Estilizando os ícones, com o background de bandeira */
-    option[value='/ptbr'] {
-        background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Flag_of_Brazil.svg/320px-Flag_of_Brazil.svg.png');
-    }
+        /* Estilizando o ícone do select */
+        #language-select::after {
+            content: ' ▼';
+            font-size: 18px;
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+        }
 
-    option[value='/es'] {
-        background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Flag_of_Spain.svg/320px-Flag_of_Spain.svg.png');
-    }
-
-    option[value='/'] {
-        background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png');
-    }
     </style>
 </head>
 <body>
     <div class="language-selector">
         <label for="language-select">Escolha o idioma:</label>
         <select id="language-select" onchange="changeLanguage()">
-            <option value="/ptbr" data-icon="🇧🇷">Português</option>
-            <option value="/es" data-icon="🇪🇸">Espanhol</option>
-            <option value="/" data-icon="🇺🇸">Inglês</option>
+            <option value="/ptbr">Português</option>
+            <option value="/es">Espanhol</option>
+            <option value="/">Inglês</option>
         </select>
     </div>
-    
     <div class="container">
         <div class="civilizacao-item">
             <img id="imagem-civilizacao-1" src="" alt="Imagem da Civilização 1" style="display: none; max-width: 600px;" />
@@ -404,12 +417,10 @@ async function pesquisarUnidades() {
   });
 }
         fetchCivilizacoes();
-
-
-    function changeLanguage() {
-        const language = document.getElementById('language-select').value;
-        window.location.href = language; // Isso irá redirecionar a página para o idioma selecionado
-    }
+        function changeLanguage() {
+            const language = document.getElementById('language-select').value;
+            window.location.href = language; // Redireciona para o idioma selecionado
+        }
 
     </script>
 </body>
