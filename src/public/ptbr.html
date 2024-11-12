@@ -163,31 +163,7 @@ async function pesquisarUnidades() {
         return;
     }
 
-    const caminhosImagens = {
-        1: '/src/public/images/CivPortrait-Jeanne_d%27Arc_AoE4.jpg',
-        2: '/src/public/images/CivPortrait-MaliansAoE4.jpg',
-        3: '/src/public/images/CivPortrait-MongolsAoE4.jpg',
-        4: '/src/public/images/CivPortrait_Byzantines_AoE4.jpg',
-        5: '/src/public/images/CivPortrait-ChineseAoE4.jpg',
-        6: '/src/public/images/CivPortrait-DelhiAoE4.jpg',
-        7: '/src/public/images/CivPortrait-EnglishAoE4.jpg',
-        8: '/src/public/images/CivPortrait-FrenchAoE4.jpg',
-        9: '/src/public/images/CivPortrait-HREAoE4.jpg',
-        10: '/src/public/images/CivPortrait-JapaneseAoE4.jpg',
-        11: '/src/public/images/CivPortrait-Order-of-the-Dragon-AoE4.jpg',
-        12: '/src/public/images/CivPortrait-OttomansAoE4.jpg',
-        13: '/src/public/images/CivPortrait-Streltsy_AoE4.jpg',
-        14: '/src/public/images/CivPortrait-Zhu-Xi%27s-Legacy-AoE4.jpg',
-        15: '/src/public/images/CivPortrait-AbbasidAoE4.jpg',
-        16: '/src/public/images/CivPortrait-Ayyubids_AoE4.jpg'
-    };
-
-    // Atualiza o src das imagens com base nas civilizações selecionadas
-    document.getElementById("imagem-civilizacao-1").src = caminhosImagens[idCivilizacao1];
-    document.getElementById("imagem-civilizacao-1").style.display = "block";
-
-    document.getElementById("imagem-civilizacao-2").src = caminhosImagens[idCivilizacao2];
-    document.getElementById("imagem-civilizacao-2").style.display = "block";
+ 
 
 
     const unidades1 = await fetchUnidades(civ1Id);
