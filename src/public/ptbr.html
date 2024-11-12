@@ -192,11 +192,15 @@
 <body>
     <div class="language-selector">
         <label for="language-select">Escolha o idioma:</label>
-        <select id="language-select" onchange="changeLanguage()">
-            <option value="/ptbr">🇧🇷</option>
-            <option value="/es">Espanhol</option>
-            <option value="/">Inglês</option>
-        </select>
+        <div>
+            <label for="language-select">Escolha o idioma:</label>
+            <select id="language-select" onchange="changeLanguage()">
+                <option value="/ptbr">&#127463;&#127479; Português</option> <!-- Emoji da bandeira do Brasil -->
+                <option value="/es">&#127466;&#127480; Espanhol</option> <!-- Emoji da bandeira da Espanha -->
+                <option value="/">&#127482;&#127480; Inglês</option> <!-- Emoji da bandeira dos EUA -->
+            </select>
+        </div>
+        
     </div>
     <div class="container">
         <div class="civilizacao-item">
