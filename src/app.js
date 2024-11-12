@@ -82,11 +82,11 @@ router.get('/civilizacoes_es', async (req, res) => {
 });
 
 
-router.get('/civilizacoes/:id/unidades', async (req, res) => {
+router.get('/civilizacoes_ptbr/:id/unidades_ptbr', async (req, res) => {
   const { id } = req.params;
   try {
     const result = await pool.query(
-      'SELECT nome, habilidade_especial, forte_contra, fraco_contra FROM unidades WHERE civilizacao_id = $1',
+      'SELECT nome, habilidade_especial, forte_contra, fraco_contra FROM unidades WHERE civilizacao_ptbr_id = $1',
       [id]
     );
     res.json(result.rows);
@@ -97,9 +97,9 @@ router.get('/civilizacoes/:id/unidades', async (req, res) => {
 });
 
 // Rota para buscar todas as civilizações
-router.get('/civilizacoes', async (req, res) => {
+router.get('/civilizacoes_ptbr', async (req, res) => {
   try {
-    const result = await pool.query('SELECT id, nome FROM civilizacoes');
+    const result = await pool.query('SELECT id, nome FROM civilizacoes_ptbr');
     res.json(result.rows);
   } catch (error) {
     console.error('Erro ao buscar civilizações:', error);

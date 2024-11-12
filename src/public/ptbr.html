@@ -121,7 +121,7 @@
 
         async function fetchCivilizacoes() {
             try {
-                const response = await fetch('/civilizacoes');
+                const response = await fetch('/civilizacoes_ptbr');
                 const civilizacoes = await response.json();
                 
                 const select1 = document.getElementById('civilizacao-select-1');
@@ -144,7 +144,7 @@
         }
 
         async function fetchUnidades(civilizacaoId) {
-            const response = await fetch(`/civilizacoes/${civilizacaoId}/unidades`);
+            const response = await fetch(`/civilizacoes_ptbr/${civilizacaoId}/unidades_ptbr`);
             return response.json();
         }
 
