@@ -97,16 +97,20 @@ router.get('/civilizacoes_ptbr/:id/unidades_ptbr', async (req, res) => {
   }
 });
 
-// Rota para buscar todas as civilizações
+// Rota para buscar todas as civilizações com imagens
 router.get('/civilizacoes_ptbr', async (req, res) => {
   try {
-    const result = await pool.query('SELECT id, nome FROM civilizacoes_ptbr');
+    // Modifique a consulta para incluir o campo localizacao_imagem
+    const result = await pool.query('SELECT id, nome, localizacao_imagem FROM civilizacoes_ptbr');
+    
+    // Retorna as civilizações com seus respectivos caminhos das imagens
     res.json(result.rows);
   } catch (error) {
     console.error('Erro ao buscar civilizações:', error);
     res.status(500).json({ error: 'Erro ao buscar civilizações' });
   }
 });
+
 
 
 router.get('/es', async (req, res) => {

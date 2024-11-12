@@ -163,9 +163,6 @@ async function pesquisarUnidades() {
         return;
     }
 
- 
-
-
     const unidades1 = await fetchUnidades(civ1Id);
     const unidades2 = await fetchUnidades(civ2Id);
 
@@ -177,28 +174,53 @@ async function pesquisarUnidades() {
     tabelaUnidades1.innerHTML = '';
     tabelaUnidades2.innerHTML = '';
 
-    unidades1.forEach(unidades_ptbr => {
+    // Preencher as tabelas de unidades
+    unidades1.forEach(unidade => {
         const row = document.createElement('tr');
         row.innerHTML = `
-            <td>${unidades_ptbr.nome}</td>
-            <td>${unidades_ptbr.habilidade_especial || ''}</td>
-            <td>${unidades_ptbr.forte_contra || ''}</td>
-            <td>${unidades_ptbr.fraco_contra || ''}</td>
+            <td>${unidade.nome}</td>
+            <td>${unidade.habilidade_especial || ''}</td>
+            <td>${unidade.forte_contra || ''}</td>
+            <td>${unidade.fraco_contra || ''}</td>
         `;
         tabelaUnidades1.appendChild(row);
     });
 
-    unidades2.forEach(unidades_ptbr => {
+    unidades2.forEach(unidade => {
         const row = document.createElement('tr');
         row.innerHTML = `
-            <td>${unidades_ptbr.nome}</td>
-            <td>${unidades_ptbr.habilidade_especial || ''}</td>
-            <td>${unidades_ptbr.forte_contra || ''}</td>
-            <td>${unidades_ptbr.fraco_contra || ''}</td>
+            <td>${unidade.nome}</td>
+            <td>${unidade.habilidade_especial || ''}</td>
+            <td>${unidade.forte_contra || ''}</td>
+            <td>${unidade.fraco_contra || ''}</td>
         `;
         tabelaUnidades2.appendChild(row);
     });
+
+    // Obter a imagem da civilização 1 e 2
+    const imagemCivilizacao1 = await fetchImagemCivilizacao(civ1Id);
+    const imagemCivilizacao2 = await fetchImagemCivilizacao(civ2Id);
+
+    // Exibir as imagens das civilizações
+    const imagemTag1 = document.getElementById('imagem-civilizacao-1');
+    const imagemTag2 = document.getElementById('imagem-civilizacao-2');
+
+    imagemTag1.src = imagemCivilizacao1;  // Caminho da imagem da Civilização 1
+    imagemTag2.src = imagemCivilizacao2;  // Caminho da imagem da Civilização 2
+
+    // Tornar as imagens visíveis
+    imagemTag1.style.display = 'block';
+    imagemTag2.style.display = 'block';
 }
+
+// Função para buscar a imagem da civilização
+async function fetchImagemCivilizacao(civId) {
+    const response = await fetch(`/api/civilizacoes/${civId}`);  // Ajuste a URL conforme sua API
+    const data = await response.json();
+    
+    return data.localizacao_imagem;  // Retorne o caminho da imagem
+}
+
 
         fetchCivilizacoes();
     </script>
