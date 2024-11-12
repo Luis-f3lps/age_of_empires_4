@@ -58,6 +58,14 @@
     </style>
 </head>
 <body>
+    <div>
+        <label for="language-select">Escolha o idioma:</label>
+        <select id="language-select" onchange="changeLanguage()">
+            <option value="">Inglês</option>
+            <option value="/es">Espanhol</option>
+            <option value="/ptbr">Português</option>
+        </select>
+    </div>
     <div class="container">
         <label for="civilizacao-select-1">Choose the first civilization:</label>
         <select id="civilizacao-select-1">
@@ -104,6 +112,12 @@
     </div>
 
     <script>
+        
+        function changeLanguage() {
+            const selectedLanguage = document.getElementById('language-select').value;
+            window.location.href = selectedLanguage;
+        }
+
         async function fetchCivilizacoes() {
             try {
                 const response = await fetch('/civilizacoes');
