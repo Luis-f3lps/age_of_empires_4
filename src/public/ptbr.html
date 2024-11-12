@@ -202,12 +202,12 @@
 <body>
     <div class="language-selector">
         <label for="language-select">Escolha o idioma:</label>
-        <select id="language-select" onchange="changeLanguage()">
-            <option value="/ptbr">🇧🇷</option>
-            <option value="/es">🇪🇸</option>
-            <option value="/">🇺🇸</option>
-        </select>
-    </div>    
+        <div class="flag-options">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg" alt="Português" onclick="changeLanguage('/ptbr')" title="Português" />
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg" alt="Inglês" onclick="changeLanguage('/')" title="Inglês" />
+            <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Flag_of_Spain.svg" alt="Espanhol" onclick="changeLanguage('/es')" title="Espanhol" />
+        </div>
+    </div>
     
     <div class="container">
         <div class="civilizacao-item">
@@ -361,6 +361,9 @@ async function pesquisarUnidades() {
       `;
       tabelaUnidades2.appendChild(row);
   });
+}
+function changeLanguage(languageCode) {
+    window.location.href = languageCode;
 }
 
 
