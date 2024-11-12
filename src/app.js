@@ -2,19 +2,14 @@
 import path from 'path';
 import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
-import pkg from 'pg'; // Importa o pacote pg
-import PDFDocument from 'pdfkit';
-import fs from 'fs';
-import session from 'express-session';
-import bcrypt from 'bcrypt';
-import connectPgSimple from 'connect-pg-simple'; // Importa a integração do express-session com o PostgreSQL
 import pool from './database.js'; // Importa a pool de conexões do arquivo database.js
 
 // Definindo __filename e __dirname
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
 // Carregando variáveis de ambiente do arquivo .env
-dotenv.config({ path: path.resolve(__dirname, 'variaveis.env') }); // Ajuste o caminho conforme necessário
+dotenv.config({ path: path.resolve(__dirname, 'variaveis.env') });
 console.log({
   DB_HOST: process.env.DB_HOST,
   DB_USER: process.env.DB_USER,
@@ -23,24 +18,24 @@ console.log({
 });
 
 const app = express();
+const router = express.Router(); // Inicializa o roteador
 
 // Testando a conexão ao banco de dados
 (async () => {
   try {
-    await pool.query('SELECT NOW()'); // Consulta simples para testar a conexão
+    await pool.query('SELECT NOW()');
     console.log('Conexão bem-sucedida ao banco de dados!');
   } catch (err) {
     console.error('Erro ao conectar ao banco de dados:', err);
   }
 })();
 
-
 // Rota para buscar unidades de uma civilização específica
 router.get('/civilizacoes/:id/unidades', async (req, res) => {
   const { id } = req.params;
   try {
     const result = await pool.query(
-      'SELECT nome FROM unidades WHERE civilizacao_id = $1',
+      'SELECT nome, habilidade_especial, forte_contra, fraco_contra FROM unidades WHERE civilizacao_id = $1',
       [id]
     );
     res.json(result.rows);
@@ -50,14 +45,7 @@ router.get('/civilizacoes/:id/unidades', async (req, res) => {
   }
 });
 
-
-// Configurar middleware para servir arquivos estáticos
-app.use(express.static(path.join(__dirname, 'public')));
-
-// Rotas do servidor
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
+// Rota para buscar todas as civilizações
 router.get('/civilizacoes', async (req, res) => {
   try {
     const result = await pool.query('SELECT id, nome FROM civilizacoes');
@@ -67,4 +55,14 @@ router.get('/civilizacoes', async (req, res) => {
     res.status(500).json({ error: 'Erro ao buscar civilizações' });
   }
 });
+
+// Configurar middleware para servir arquivos estáticos
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(router); // Utiliza o roteador configurado
+
+// Rota inicial
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
 export default app;
