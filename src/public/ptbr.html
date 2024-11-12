@@ -14,10 +14,88 @@
             margin: 0;
             padding: 20px;
         }
-        .container {
-            width: 300px;
-            margin-bottom: 20px;
-        }
+        /* Estilo geral da página */
+
+/* Container para os itens */
+.container {
+    display: flex;
+    justify-content: space-between; /* Distribui os elementos igualmente */
+    align-items: center; /* Centraliza os itens verticalmente */
+    gap: 30px; /* Adiciona espaçamento entre os itens */
+    padding: 20px;
+}
+
+/* Cada item de civilização */
+.civilizacao-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.civilizacao-item:hover {
+    transform: scale(1.05); /* Aumenta a escala ao passar o mouse */
+}
+
+/* Estilo para os menus de seleção */
+.selecionar-civilizacoes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.selecionar-civilizacoes label {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.selecionar-civilizacoes select {
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    margin-bottom: 15px;
+    width: 200px;
+}
+
+.selecionar-civilizacoes button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.selecionar-civilizacoes button:hover {
+    background-color: #45a049; /* Efeito de hover para o botão */
+}
+
+/* Imagens */
+#imagem-civilizacao-1, #imagem-civilizacao-2 {
+    max-width: 200px;
+    display: block;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease;
+}
+
+#imagem-civilizacao-1:hover, #imagem-civilizacao-2:hover {
+    transform: scale(1.1); /* Efeito de hover nas imagens */
+}
+
+
         select, button {
             width: 100%;
             padding: 10px;
@@ -65,30 +143,30 @@
             <option value="/es">Espanhol</option>
             <option value="/">Inglês</option>
         </select>
-    </div><div class="container">
-        <div>
-        <img id="imagem-civilizacao-1" src="" alt="Imagem da Civilização 1" style="display: none; max-width: 200px;" />
     </div>
-    <div>
-
-        <label for="civilizacao-select-1">Escolha a primeira civilização:</label>
-        <select id="civilizacao-select-1">
-            <option value="">Escolha...</option>
-        </select>
     
-        <label for="civilizacao-select-2">Escolha a segunda civilização:</label>
-        <select id="civilizacao-select-2">
-            <option value="">Escolha...</option>
-        </select>
+    <div class="container">
+        <div class="civilizacao-item">
+            <img id="imagem-civilizacao-1" src="" alt="Imagem da Civilização 1" style="display: none; max-width: 200px;" />
+        </div>
+        <div class="selecionar-civilizacoes">
+            <label for="civilizacao-select-1">Escolha a primeira civilização:</label>
+            <select id="civilizacao-select-1">
+                <option value="">Escolha...</option>
+            </select>
+        
+            <label for="civilizacao-select-2">Escolha a segunda civilização:</label>
+            <select id="civilizacao-select-2">
+                <option value="">Escolha...</option>
+            </select>
+        
+            <button onclick="pesquisarUnidades()">Procurar</button>
+        </div>
+        <div class="civilizacao-item">
+            <img id="imagem-civilizacao-2" src="" alt="Imagem da Civilização 2" style="display: none; max-width: 200px;" />
+        </div>
+    </div>
     
-        <button onclick="pesquisarUnidades()">Procurar</button>
-    </div>
-    <div>
-
-        <img id="imagem-civilizacao-2" src="" alt="Imagem da Civilização 2" style="display: none; max-width: 200px;" />
-    </div>
-
-    </div>
     
     <div id="resultado">
         <div id="civilizacao1-unidades" class="civilizacao-unidades">
