@@ -299,7 +299,13 @@ async function fetchUnidades(civilizacaoId) {
     console.log(unidades);  // Verifique os dados retornados aqui
     return unidades;
 }
+window.onload = function() {
+    document.getElementById('civilizacao-select-1').value = 13; // Define o ID inicial para a primeira civilização
+    document.getElementById('civilizacao-select-2').value = 7;  // Define o ID inicial para a segunda civilização
 
+    // Chama a função de pesquisa automaticamente ao carregar a página
+    pesquisarUnidades();
+};
 async function pesquisarUnidades() {
   const civ1Id = document.getElementById('civilizacao-select-1').value;
   const civ2Id = document.getElementById('civilizacao-select-2').value;
