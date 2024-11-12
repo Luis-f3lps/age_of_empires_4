@@ -166,24 +166,24 @@
             tabelaUnidades1.innerHTML = '';
             tabelaUnidades2.innerHTML = '';
 
-            unidades1.forEach(unidade => {
+            unidades1.forEach(unidades => {
                 const row = document.createElement('tr');
                 row.innerHTML = `
-                    <td>${unidade.nome}</td>
-                    <td>${unidade.habilidade_especial || ''}</td>
-                    <td>${unidade.forte_contra || ''}</td>
-                    <td>${unidade.fraco_contra || ''}</td>
+                    <td>${unidades_ptbr.nome}</td>
+                    <td>${unidades_ptbr.habilidade_especial || ''}</td>
+                    <td>${unidades_ptbr.forte_contra || ''}</td>
+                    <td>${unidades_ptbr.fraco_contra || ''}</td>
                 `;
                 tabelaUnidades1.appendChild(row);
             });
 
-            unidades2.forEach(unidade => {
+            unidades2.forEach(unidades => {
                 const row = document.createElement('tr');
                 row.innerHTML = `
-                    <td>${unidade.nome}</td>
-                    <td>${unidade.habilidade_especial || ''}</td>
-                    <td>${unidade.forte_contra || ''}</td>
-                    <td>${unidade.fraco_contra || ''}</td>
+                    <td>${unidades_ptbr.nome}</td>
+                    <td>${unidades_ptbr.habilidade_especial || ''}</td>
+                    <td>${unidades_ptbr.forte_contra || ''}</td>
+                    <td>${unidades_ptbr.fraco_contra || ''}</td>
                 `;
                 tabelaUnidades2.appendChild(row);
             });
