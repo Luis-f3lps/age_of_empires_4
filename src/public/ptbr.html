@@ -149,45 +149,44 @@
         }
 
         async function pesquisarUnidades() {
-            const civ1Id = document.getElementById('civilizacao-select-1').value;
-            const civ2Id = document.getElementById('civilizacao-select-2').value;
+    const civ1Id = document.getElementById('civilizacao-select-1')?.value;
+    const civ2Id = document.getElementById('civilizacao-select-2')?.value;
 
-            if (!civ1Id || !civ2Id) {
-                alert('Por favor, selecione ambas as civilizações.');
-                return;
-            }
+    if (!civ1Id || !civ2Id) {
+        alert('Por favor, selecione ambas as civilizações.');
+        return;
+    }
 
-            const unidades1 = await fetchUnidades(civ1Id);
-            const unidades2 = await fetchUnidades(civ2Id);
+    try {
+        const unidades1 = await fetchUnidades(civ1Id);
+        const unidades2 = await fetchUnidades(civ2Id);
 
-            const tabelaUnidades1 = document.getElementById('tabela-unidades-1').querySelector('tbody');
-            const tabelaUnidades2 = document.getElementById('tabela-unidades-2').querySelector('tbody');
-            
-            tabelaUnidades1.innerHTML = '';
-            tabelaUnidades2.innerHTML = '';
+        renderTabelaUnidades('tabela-unidades-1', unidades1);
+        renderTabelaUnidades('tabela-unidades-2', unidades2);
 
-            unidades1.forEach(unidade => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${unidade.nome}</td>
-                    <td>${unidade.habilidade_especial || ''}</td>
-                    <td>${unidade.forte_contra || ''}</td>
-                    <td>${unidade.fraco_contra || ''}</td>
-                `;
-                tabelaUnidades1.appendChild(row);
-            });
+    } catch (error) {
+        console.error('Erro ao buscar unidades:', error);
+        alert('Ocorreu um erro ao buscar as unidades. Tente novamente mais tarde.');
+    }
+}
 
-            unidades2.forEach(unidade => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${unidade.nome}</td>
-                    <td>${unidade.habilidade_especial || ''}</td>
-                    <td>${unidade.forte_contra || ''}</td>
-                    <td>${unidade.fraco_contra || ''}</td>
-                `;
-                tabelaUnidades2.appendChild(row);
-            });
-        }
+function renderTabelaUnidades(tabelaId, unidades) {
+    const tabela = document.getElementById(tabelaId)?.querySelector('tbody');
+    if (!tabela) return;
+
+    tabela.innerHTML = ''; // Limpar a tabela antes de renderizar os novos dados
+
+    unidades.forEach(unidade => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${sanitizeHTML(unidade.nome)}</td>
+            <td>${sanitizeHTML(unidade.habilidade_especial || '')}</td>
+            <td>${sanitizeHTML(unidade.forte_contra || '')}</td>
+            <td>${sanitizeHTML(unidade.fraco_contra || '')}</td>
+        `;
+        tabela.appendChild(row);
+    });
+}
 
         fetchCivilizacoes();
     </script>

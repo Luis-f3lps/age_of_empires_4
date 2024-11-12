@@ -82,14 +82,27 @@ router.get('/civilizacoes_es', async (req, res) => {
 });
 
 
+// Rota para buscar unidades de uma civilização específica
 router.get('/civilizacoes_ptbr/:id/unidades_ptbr', async (req, res) => {
   const { id } = req.params;
+
+  // Validação simples do ID
+  if (isNaN(id)) {
+    return res.status(400).json({ error: 'ID inválido fornecido' });
+  }
+
   try {
     const result = await pool.query(
-      'SELECT nome, habilidade_especial, forte_contra, fraco_contra FROM unidades WHERE civilizacao_ptbr_id = $1',
+      'SELECT nome, habilidade_especial, forte_contra, fraco_contra FROM unidades_ptbr WHERE civilizacao_ptbr_id = $1',
       [id]
     );
-    res.json(result.rows);
+
+    // Verificação se foram encontradas unidades
+    if (result.rows.length === 0) {
+      return res.status(404).json({ message: 'Nenhuma unidade encontrada para esta civilização' });
+    }
+
+    res.json({ unidades: result.rows });
   } catch (error) {
     console.error('Erro ao buscar unidades:', error);
     res.status(500).json({ error: 'Erro ao buscar unidades' });
@@ -100,12 +113,13 @@ router.get('/civilizacoes_ptbr/:id/unidades_ptbr', async (req, res) => {
 router.get('/civilizacoes_ptbr', async (req, res) => {
   try {
     const result = await pool.query('SELECT id, nome FROM civilizacoes_ptbr');
-    res.json(result.rows);
+    res.json({ civilizacoes: result.rows });
   } catch (error) {
     console.error('Erro ao buscar civilizações:', error);
     res.status(500).json({ error: 'Erro ao buscar civilizações' });
   }
 });
+
 
 router.get('/es', async (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'es.html'));
