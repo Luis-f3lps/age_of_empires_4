@@ -187,50 +187,13 @@
     background-color: #555;
 }
 
- /* Estilos gerais para o select */
- .language-selector {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        #language-select option {
-            padding-left: 30px; /* Espaçamento para as bandeiras */
-            background-repeat: no-repeat;
-            background-position: left center;
-            background-size: 20px 20px; /* Ajuste de tamanho da bandeira */
-        }
-
-        /* Adicionando bandeiras como fundo */
-        #language-select option[value='/ptbr'] {
-            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Flag_of_Brazil.svg/320px-Flag_of_Brazil.svg.png');
-        }
-
-        #language-select option[value='/es'] {
-            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Flag_of_Spain.svg/320px-Flag_of_Spain.svg.png');
-        }
-
-        #language-select option[value='/'] {
-            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png');
-        }
-
-        /* Estilizando o ícone do select */
-        #language-select::after {
-            content: ' ▼';
-            font-size: 18px;
-            position: absolute;
-            top: 50%;
-            right: 10px;
-            transform: translateY(-50%);
-        }
-
     </style>
 </head>
 <body>
     <div class="language-selector">
         <label for="language-select">Escolha o idioma:</label>
         <select id="language-select" onchange="changeLanguage()">
-            <option value="/ptbr">Português</option>
+            <option value="/ptbr">🇧🇷</option>
             <option value="/es">Espanhol</option>
             <option value="/">Inglês</option>
         </select>
