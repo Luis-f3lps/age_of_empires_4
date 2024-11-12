@@ -87,7 +87,7 @@ router.get('/civilizacoes_ptbr/:id/unidades_ptbr', async (req, res) => {
   const { id } = req.params;
   try {
     const result = await pool.query(
-      'SELECT nome, habilidade_especial, forte_contra, fraco_contra FROM unidades_ptbr WHERE civilizacao_ptbr_id = $1',
+      'SELECT nome, habilidade_especial, forte_contra, fraco_contra FROM unidades_ptbr WHERE civilizacao_id = $1',
       [id]
     );
     res.json(result.rows);
