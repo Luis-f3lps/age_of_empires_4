@@ -82,7 +82,8 @@ router.get('/civilizacoes_es', async (req, res) => {
 });
 
 
-router.get('/civilizacoes_ptbr/:id/unidade_ptbr', async (req, res) => {
+// Rota para buscar as unidades de uma civilização
+router.get('/civilizacoes_ptbr/:id/unidades_ptbr', async (req, res) => {
   const { id } = req.params;
   try {
     const result = await pool.query(
@@ -106,6 +107,7 @@ router.get('/civilizacoes_ptbr', async (req, res) => {
     res.status(500).json({ error: 'Erro ao buscar civilizações' });
   }
 });
+
 
 router.get('/es', async (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'es.html'));
