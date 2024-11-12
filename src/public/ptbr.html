@@ -204,13 +204,12 @@
 <body>
     <div class="language-selector">
         <label for="language-select">Escolha o idioma:</label>
-        <div class="flag-options">
-            <i class="fas fa-flag-usa" onclick="changeLanguage('/')" title="Inglês"></i>
-            <i class="fas fa-flag-br" onclick="changeLanguage('/ptbr')" title="Português"></i>
-            <i class="fas fa-flag-es" onclick="changeLanguage('/es')" title="Espanhol"></i>
-        </div>
+        <select id="language-select" onchange="changeLanguage()">
+            <option value="/ptbr" data-icon="🇧🇷">Português</option>
+            <option value="/es" data-icon="🇪🇸">Espanhol</option>
+            <option value="/" data-icon="🇺🇸">Inglês</option>
+        </select>
     </div>
-    
     <div class="container">
         <div class="civilizacao-item">
             <img id="imagem-civilizacao-1" src="" alt="Imagem da Civilização 1" style="display: none; max-width: 600px;" />
