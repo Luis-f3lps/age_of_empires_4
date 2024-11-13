@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seleção de Civilizações e Unidades</title>
+    <title>Age of the Felps</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link rel="icon" href="images/logo03-removebg-preview.png" type="image/png">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -14,10 +16,88 @@
             margin: 0;
             padding: 20px;
         }
-        .container {
-            width: 300px;
-            margin-bottom: 20px;
-        }
+        /* Estilo geral da página */
+
+/* Container para os itens */
+.container {
+    display: flex;
+    justify-content: space-between; /* Distribui os elementos igualmente */
+    align-items: center; /* Centraliza os itens verticalmente */
+    gap: 30px; /* Adiciona espaçamento entre os itens */
+    padding: 20px;
+}
+
+/* Cada item de civilização */
+.civilizacao-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.civilizacao-item:hover {
+    transform: scale(1.05); /* Aumenta a escala ao passar o mouse */
+}
+
+/* Estilo para os menus de seleção */
+.selecionar-civilizacoes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.selecionar-civilizacoes label {
+    font-weight: bold;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+.selecionar-civilizacoes select {
+    padding: 8px;
+    font-size: 18px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    margin-bottom: 15px;
+    width: 300px;
+}
+
+.selecionar-civilizacoes button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.selecionar-civilizacoes button:hover {
+    background-color: #45a049; /* Efeito de hover para o botão */
+}
+
+/* Imagens */
+#imagem-civilizacao-1, #imagem-civilizacao-2 {
+    max-width: 200px;
+    display: block;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease;
+}
+
+#imagem-civilizacao-1:hover, #imagem-civilizacao-2:hover {
+    transform: scale(1.1); /* Efeito de hover nas imagens */
+}
+
+
         select, button {
             width: 100%;
             padding: 10px;
@@ -55,28 +135,96 @@
         th {
             background-color: #f2f2f2;
         }
+        .language-selector {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* Estilo do label */
+.language-selector label {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 12px;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Efeito de foco no select */
+.language-selector select:focus {
+    border-color: #4CAF50;
+    transform: scale(1.02);
+    outline: none;
+}
+#language-select {
+    padding: 8px 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 0;
+}
+/* Efeito de hover no select */
+.language-selector select:hover {
+    border-color: #4CAF50;
+}
+
+/* Estilo para as opções do select */
+.language-selector option {
+    padding: 10px;
+    font-size: 16px;
+}
+
+/* Estilo para o seletor de idioma */
+.language-selector select::-webkit-scrollbar {
+    width: 8px;
+}
+
+.language-selector select::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 5px;
+}
+
+.language-selector select::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+}
+
     </style>
 </head>
 <body>
-    <div>
-        <label for="language-select">Escolha o idioma:</label>
-        <select id="language-select" onchange="changeLanguage()">
-            <option value="/es">Espanhol</option>
-            <option value="/">Inglês</option>
-            <option value="/ptbr">Português</option>
-        </select>
-    </div><div class="container">
-        <label for="civilizacao-select-1">Elija la primera civilización:</label>
-        <select id="civilizacao-select-1">
-            <option value="">Elija...</option>
-        </select>
+    <div class="language-selector">
+        <div>
+            <select id="language-select" onchange="changeLanguage()">
+                <option value="/ptbr">&#127463;&#127479;</option> <!-- Emoji da bandeira do Brasil -->
+                <option value="/es">&#127466;&#127480;</option> <!-- Emoji da bandeira da Espanha -->
+                <option value="/">&#127482;&#127480;</option> <!-- Emoji da bandeira dos EUA -->
+            </select>
+        </div>
+        
+    </div>
+    <div class="container">
+        <div class="civilizacao-item">
+            <img id="imagen-civilizacion-1" src="" alt="Imagen de la Civilización 1" style="display: none; max-width: 600px;" />
+        </div>
+        <div class="seleccionar-civilizaciones">
+            <label for="civilizacao-select-1">Elige la primera civilización:</label>
+            <select id="civilizacao-select-1">
+                <option value="">Elige...</option>
+            </select>
     
-        <label for="civilizacao-select-2">Elija la segunda civilización:</label>
-        <select id="civilizacao-select-2">
-            <option value="">Elija...</option>
-        </select>
+            <label for="civilizacao-select-2">Elige la segunda civilización:</label>
+            <select id="civilizacao-select-2">
+                <option value="">Elige...</option>
+            </select>
     
-        <button onclick="pesquisarUnidades()">Buscar</button>
+            <button onclick="pesquisarUnidades()">Buscar</button>
+        </div>
+        <div class="civilizacao-item">
+            <img id="imagen-civilizacion-2" src="" alt="Imagen de la Civilización 2" style="display: none; max-width: 600px;" />
+        </div>
     </div>
     
     <div id="resultado">
@@ -87,26 +235,9 @@
                     <tr>
                         <th>Nombre</th>
                         <th>Habilidad Especial</th>
-                        <th>Fuerte Contra</th>
-                        <th>Débil Contra</th>
+                        <th>Fuerte contra</th>
+                        <th>Débil contra</th>
                     </tr>
-                    <img id="imagem-unidade" src="/src/public/images/CivPortrait-AbbasidAoE4.jpg" alt="Imagem da unidade" />
-                    <img id="imagem-unidade" src="/src/public/images/CivPortrait-ChineseAoE4.jpg" alt="Imagem da unidade" />
-                    <img id="imagem-unidade" src="/src/public/images/CivPortrait_Byzantines_AoE4.jpg" alt="Imagem da unidade" />
-                    <img id="imagem-unidade" src="/src/public/images/CivPortrait-AbbasidAoE4.jpg" alt="Imagem da unidade" />
-                    <img id="imagem-unidade" src="/src/public/images/CivPortrait-DelhiAoE4.jpg" alt="Imagem da unidade" />
-                    <img id="imagem-unidade" src="/src/public/images/CivPortrait-EnglishAoE4.jpg" alt="Imagem da unidade" />
-                    <img id="imagem-unidade" src="/src/public/images/CivPortrait-Zhu-Xi%27s-Legacy-AoE4.jpg" alt="Imagem da unidade" />
-                    <img id="imagem-unidade" src="/src/public/images/CivPortrait-FrenchAoE4.jpg" alt="Imagem da unidade" />
-                    <img id="imagem-unidade" src="/src/public/images/CivPortrait-Zhu-Xi%27s-Legacy-AoE4.jpg" alt="Imagem da unidade" />
-                    <img id="imagem-unidade" src="/src/public/images/CivPortrait-OttomansAoE4.jpg" alt="Imagem da unidade" />
-                    <img id="imagem-unidade" src="/src/public/images/CivPortrait-Order-of-the-Dragon-AoE4.jpg" alt="Imagem da unidade" />
-                    <img id="imagem-unidade" src="/src/public/images/CivPortrait-MaliansAoE4.jpg" alt="Imagem da unidade" />
-                    <img id="imagem-unidade" src="/src/public/images/CivPortrait-HREAoE4.jpg" alt="Imagem da unidade" />
-                    <img id="imagem-unidade" src="/src/public/images/CivPortrait-Jeanne_d%27Arc_AoE4.jpg" alt="Imagem da unidade" />
-                    <img id="imagem-unidade" src="/src/public/images/CivPortrait-MongolsAoE4.jpg" alt="Imagem da unidade" />
-                    <img id="imagem-unidade" src="/src/public/images/CivPortrait-JapaneseAoE4.jpg" alt="Imagem da unidade" />
-
                 </thead>
                 <tbody></tbody>
             </table>
@@ -118,93 +249,118 @@
                     <tr>
                         <th>Nombre</th>
                         <th>Habilidad Especial</th>
-                        <th>Fuerte Contra</th>
-                        <th>Débil Contra</th>
+                        <th>Fuerte contra</th>
+                        <th>Débil contra</th>
                     </tr>
                 </thead>
                 <tbody></tbody>
             </table>
         </div>
     </div>    
+    
+    </div>
 
     <script>
-        
+
         function changeLanguage() {
             const selectedLanguage = document.getElementById('language-select').value;
             window.location.href = selectedLanguage;
         }
 
         async function fetchCivilizacoes() {
-            try {
-                const response = await fetch('/civilizacoes_es');
-                const civilizacoes = await response.json();
-                
-                const select1 = document.getElementById('civilizacao-select-1');
-                const select2 = document.getElementById('civilizacao-select-2');
-                
-                civilizacoes.forEach(civ => {
-                    const option1 = document.createElement('option');
-                    option1.value = civ.id;
-                    option1.textContent = civ.nome;
-                    select1.appendChild(option1);
+    try {
+        const response = await fetch('/civilizacoes_ptbr');  // Certifique-se que a URL está correta no servidor
+        const civilizacoes = await response.json();
+        
+        const select1 = document.getElementById('civilizacao-select-1');
+        const select2 = document.getElementById('civilizacao-select-2');
+        
+        civilizacoes.forEach(civ => {
+            const option1 = document.createElement('option');
+            option1.value = civ.id;
+            option1.textContent = civ.nome;
+            select1.appendChild(option1);
 
-                    const option2 = document.createElement('option');
-                    option2.value = civ.id;
-                    option2.textContent = civ.nome;
-                    select2.appendChild(option2);
-                });
-            } catch (error) {
-                console.error('Erro ao buscar civilizações:', error);
-            }
-        }
+            const option2 = document.createElement('option');
+            option2.value = civ.id;
+            option2.textContent = civ.nome;
+            select2.appendChild(option2);
+        });
+    } catch (error) {
+        console.error('Erro ao buscar civilizações:', error);
+    }
+}
+async function fetchUnidades(civilizacaoId) {
+    const response = await fetch(`/civilizacoes_ptbr/${civilizacaoId}/unidades_ptbr`);
+    const unidades = await response.json();
+    console.log(unidades);  // Verifique os dados retornados aqui
+    return unidades;
+}
 
-        async function fetchUnidades(civilizacaoId) {
-            const response = await fetch(`/civilizacoes_es/${civilizacaoId}/unidades_es`);
-            return response.json();
-        }
+async function pesquisarUnidades() {
+  const civ1Id = document.getElementById('civilizacao-select-1').value;
+  const civ2Id = document.getElementById('civilizacao-select-2').value;
 
-        async function pesquisarUnidades() {
-            const civ1Id = document.getElementById('civilizacao-select-1').value;
-            const civ2Id = document.getElementById('civilizacao-select-2').value;
+  if (!civ1Id || !civ2Id) {
+      alert('Por favor, selecione ambas as civilizações.');
+      return;
+  }
 
-            if (!civ1Id || !civ2Id) {
-                alert('Por favor, selecione ambas as civilizações.');
-                return;
-            }
+  const unidades1 = await fetchUnidades(civ1Id);
+  const unidades2 = await fetchUnidades(civ2Id);
 
-            const unidades1 = await fetchUnidades(civ1Id);
-            const unidades2 = await fetchUnidades(civ2Id);
+  const civilizacoes = await fetch('/civilizacoes_ptbr'); // Busca as civilizações e os caminhos das imagens
+  const civilizacoesData = await civilizacoes.json();
 
-            const tabelaUnidades1 = document.getElementById('tabela-unidades-1').querySelector('tbody');
-            const tabelaUnidades2 = document.getElementById('tabela-unidades-2').querySelector('tbody');
-            
-            tabelaUnidades1.innerHTML = '';
-            tabelaUnidades2.innerHTML = '';
+  // Encontrar as civilizações com base no ID
+  const civ1 = civilizacoesData.find(civ => civ.id === parseInt(civ1Id));
+  const civ2 = civilizacoesData.find(civ => civ.id === parseInt(civ2Id));
 
-            unidades1.forEach(unidade => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${unidade.nome}</td>
-                    <td>${unidade.habilidade_especial || ''}</td>
-                    <td>${unidade.forte_contra || ''}</td>
-                    <td>${unidade.fraco_contra || ''}</td>
-                `;
-                tabelaUnidades1.appendChild(row);
-            });
+  const imagemCiv1 = document.getElementById('imagem-civilizacao-1');
+  const imagemCiv2 = document.getElementById('imagem-civilizacao-2');
 
-            unidades2.forEach(unidade => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${unidade.nome}</td>
-                    <td>${unidade.habilidade_especial || ''}</td>
-                    <td>${unidade.forte_contra || ''}</td>
-                    <td>${unidade.fraco_contra || ''}</td>
-                `;
-                tabelaUnidades2.appendChild(row);
-            });
-        }
+  // Atualizar a imagem de cada civilização
+  imagemCiv1.src = civ1.localizacao_imagem; // Caminho da imagem para a civilização 1
+  imagemCiv1.style.display = 'block'; // Exibir a imagem
 
+  imagemCiv2.src = civ2.localizacao_imagem; // Caminho da imagem para a civilização 2
+  imagemCiv2.style.display = 'block'; // Exibir a imagem
+
+  // Agora, exibir as unidades normalmente
+  const tabelaUnidades1 = document.getElementById('tabela-unidades-1').querySelector('tbody');
+  const tabelaUnidades2 = document.getElementById('tabela-unidades-2').querySelector('tbody');
+  
+  tabelaUnidades1.innerHTML = '';
+  tabelaUnidades2.innerHTML = '';
+
+  unidades1.forEach(unidades_ptbr => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+          <td>${unidades_ptbr.nome}</td>
+          <td>${unidades_ptbr.habilidade_especial || ''}</td>
+          <td>${unidades_ptbr.forte_contra || ''}</td>
+          <td>${unidades_ptbr.fraco_contra || ''}</td>
+      `;
+      tabelaUnidades1.appendChild(row);
+  });
+
+  unidades2.forEach(unidades_ptbr => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+          <td>${unidades_ptbr.nome}</td>
+          <td>${unidades_ptbr.habilidade_especial || ''}</td>
+          <td>${unidades_ptbr.forte_contra || ''}</td>
+          <td>${unidades_ptbr.fraco_contra || ''}</td>
+      `;
+      tabelaUnidades2.appendChild(row);
+  });
+}
         fetchCivilizacoes();
+        function changeLanguage() {
+            const language = document.getElementById('language-select').value;
+            window.location.href = language; // Redireciona para o idioma selecionado
+        }
+
     </script>
 </body>
 </html>
