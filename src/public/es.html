@@ -75,7 +75,7 @@
 
     <script>
 
-        function changeLanguage() {
+function changeLanguage() {
             const selectedLanguage = document.getElementById('language-select').value;
             window.location.href = selectedLanguage;
         }
@@ -167,13 +167,18 @@ async function pesquisarUnidades() {
       `;
       tabelaUnidades2.appendChild(row);
   });
+
+  const resultadoDivs = document.querySelectorAll('.civilizacao-unidades');
+    resultadoDivs.forEach(div => {
+        div.style.visibility = 'visible';  // Torna a div visível ao clicar no botão
+    });
+
 }
         fetchCivilizacoes();
         function changeLanguage() {
             const language = document.getElementById('language-select').value;
             window.location.href = language; // Redireciona para o idioma selecionado
         }
-
     </script>
 </body>
 </html>
