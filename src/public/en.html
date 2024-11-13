@@ -118,6 +118,7 @@
             border-radius: 8px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
             width: 45%;
+            visibility: visible;
         }
         .civilizacao-unidades h3 {
             margin-top: 0;
@@ -223,7 +224,7 @@
         
             <button onclick="pesquisarUnidades()">Search</button>
         </div>
-        
+
         <div class="civilizacao-item">
             <img id="imagen-civilizacion-2" src="" alt="Image of Civilization 2" style="display: none; max-width: 600px;" />
         </div>
@@ -357,6 +358,12 @@ async function pesquisarUnidades() {
       `;
       tabelaUnidades2.appendChild(row);
   });
+
+  const resultadoDivs = document.querySelectorAll('.civilizacao-unidades');
+    resultadoDivs.forEach(div => {
+        div.style.visibility = 'visible';  // Torna a div visível ao clicar no botão
+    });
+
 }
         fetchCivilizacoes();
         function changeLanguage() {
