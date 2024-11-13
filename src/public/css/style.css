@@ -1,266 +1,184 @@
 body {
-    margin: 0;
-    padding: 0;
     font-family: Arial, sans-serif;
-    background-color: #094412; 
-}
-
-.container {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    height: 100vh;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 20px;
+}
+/* Estilo geral da página */
+
+/* Container para os itens */
+.container {
+display: flex;
+justify-content: space-between; /* Distribui os elementos igualmente */
+align-items: center; /* Centraliza os itens verticalmente */
+gap: 30px; /* Adiciona espaçamento entre os itens */
+padding: 20px;
 }
 
-#pagination {
-    margin-top: 20px;
-    text-align: center;
+/* Cada item de civilização */
+.civilizacao-item {
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 15px;
+border-radius: 10px;
+transition: transform 0.3s ease;
 }
 
-.pagination-button {
-    margin: 0 5px;
-    padding: 5px 10px;
-    cursor: pointer;
-    border: 1px solid #ccc;
-    background-color: #f9f9f9;
+.civilizacao-item:hover {
+transform: scale(1.05); /* Aumenta a escala ao passar o mouse */
 }
 
-.pagination-button.active {
-    background-color: #007bff;
-    color: white;
-    border-color: #007bff;
+/* Estilo para os menus de seleção */
+.selecionar-civilizacoes {
+display: flex;
+flex-direction: column;
+align-items: center;
+background-color: #fff;
+padding: 15px;
+border-radius: 10px;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+transition: transform 0.3s ease;
 }
 
-.login-box {
-    background-color: #fff; /* Fundo branco */
-    padding: 35px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.selecionar-civilizacoes label {
+font-weight: bold;
+margin-bottom: 10px;
+margin-top: 10px;
+font-size: 20px;
 }
 
-.login-box h2 {
-    text-align: center;
-    margin-bottom: 20px;
+.selecionar-civilizacoes select {
+padding: 8px;
+font-size: 18px;
+border-radius: 5px;
+border: 1px solid #ddd;
+margin-bottom: 15px;
+width: 300px;
 }
 
-.input-group {
-    margin-bottom: 15px;
+.selecionar-civilizacoes button {
+padding: 10px 20px;
+font-size: 16px;
+background-color: #4CAF50;
+color: white;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+transition: background-color 0.3s ease;
 }
 
-.input-group label {
-    display: block;
-    margin-bottom: 5px;
+.selecionar-civilizacoes button:hover {
+background-color: #45a049; /* Efeito de hover para o botão */
 }
 
-.input-group input {
-    width: 95%;
-    padding: 8px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
+/* Imagens */
+#imagem-civilizacao-1, #imagem-civilizacao-2 {
+max-width: 200px;
+display: block;
+border-radius: 8px;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+transition: transform 0.3s ease;
 }
 
-button {
-    width: 96%;
+#imagem-civilizacao-1:hover, #imagem-civilizacao-2:hover {
+transform: scale(1.1); /* Efeito de hover nas imagens */
+}
+
+
+select, button {
+    width: 100%;
     padding: 10px;
-    border: none;
-    border-radius: 4px;
-    background-color: #094412; /* Botão verde */
-    color: #fff;
+    margin-top: 10px;
     font-size: 16px;
-    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
-
-button:hover {
-    background-color: #094412; /* Altera a cor do botão ao passar o mouse */
+#resultado {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    justify-content: center;
 }
-
-.forgot-password {
-    text-align: center;
+.civilizacao-unidades {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    width: 45%;
+}
+.civilizacao-unidades h3 {
+    margin-top: 0;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
     margin-top: 10px;
 }
-
-.forgot-password a {
-    color: #094412; /* Cor verde */
-    text-decoration: none;
+th, td {
+    padding: 8px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+th {
+    background-color: #f2f2f2;
+}
+.language-selector {
+background-color: #fff;
+border-radius: 12px;
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+display: flex;
+flex-direction: column;
+align-items: center;
+text-align: center;
 }
 
-.forgot-password a:hover {
-    text-decoration: underline;
+/* Estilo do label */
+.language-selector label {
+font-size: 18px;
+font-weight: 600;
+color: #333;
+margin-bottom: 12px;
+font-family: 'Arial', sans-serif;
 }
 
-.inputBox{
-    position: relative;
-    width: 300px;
-    margin-bottom: 10px;
+/* Efeito de foco no select */
+.language-selector select:focus {
+border-color: #4CAF50;
+transform: scale(1.02);
+outline: none;
 }
-.inputBox input{
-    padding: 15px 20px;
-    border: none;
-    outline: none;
-    width: 85%;
-    background: transparent;
-    border-radius: 5px;
-    color: rgb(0, 0, 0);
-    font-size: 1em;
-    border: 1px solid #ccc;
+#language-select {
+padding: 8px 12px;
+font-size: 16px;
+border: 1px solid #ccc;
+border-radius: 5px;
+margin: 0;
 }
-.inputBox span{
-    position: absolute;
-    left: 0;
-    padding: 15px 20px;
-    pointer-events: none;
-    font-size: 1em;
-    transition: 0.5s;
-    text-transform: uppercase;
-    color: #094412;
-    letter-spacing: 0.1em;
+/* Efeito de hover no select */
+.language-selector select:hover {
+border-color: #4CAF50;
 }
-.inputBox input:focus ~ span,
-.inputBox input:valid ~ span{
 
-    color: #ffffff;
-    font-size:0.75em;
-    transition: translateX(20px) translateY(-7x);
-    padding: 0 5px;
-    background-color: rgb(0, 148, 25);
-    border-radius: 2px;
+/* Estilo para as opções do select */
+.language-selector option {
+padding: 10px;
+font-size: 16px;
+}
 
+/* Estilo para o seletor de idioma */
+.language-selector select::-webkit-scrollbar {
+width: 8px;
 }
-#toggle{
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    right: 20px;
-    background: url('/images/show.png');
-    background-size: cover;
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
+
+.language-selector select::-webkit-scrollbar-thumb {
+background-color: #888;
+border-radius: 5px;
 }
-#toggle.hide{
-    background: url('/images/hide.png');
-    background-size: cover; 
+
+.language-selector select::-webkit-scrollbar-thumb:hover {
+background-color: #555;
 }
-@media only screen and (max-width: 2532px) and (min-height: 1170px),
-       only screen and (max-width: 2340px) and (min-height: 1080px) {
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            background-color: #094412; /* Background verde */
-        }
-        
-        .container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        
-        #pagination {
-            margin-top: 20px;
-            text-align: center;
-        }
-        
-        .pagination-button {
-            margin: 0 5px;
-            padding: 6px 12px; /* Reduzido 20% */
-            cursor: pointer;
-            border: 1px solid #ccc;
-            background-color: #f9f9f9;
-        }
-        
-        .pagination-button.active {
-            background-color: #007bff;
-            color: white;
-            border-color: #007bff;
-        }
-        
-        .login-box {
-            background-color: #fff;
-            padding: 84px; 
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        
-        .login-box h2 {
-            text-align: center;
-            margin-bottom: 48px; 
-            font-size: 2.4em; 
-        }
-        
-        .input-group {
-            margin-bottom: 36px; 
-        }
-        
-        .input-group label {
-            display: block;
-            margin-bottom: 12px;
-            font-size: 1.44em; 
-        }
-        
-        .input-group input {
-            width: 100%;
-            padding: 19.2px; 
-            border-radius: 4px;
-            border: 1px solid #ccc;
-            font-size: 1.44em; 
-        }
-        
-        button {
-            width: 100%;
-            padding: 24px; 
-            border: none;
-            border-radius: 4px;
-            background-color: #094412; 
-            color: #fff;
-            font-size: 1.8em; 
-            cursor: pointer;
-        }
-        
-        button:hover {
-            background-color: #094412;
-        }
-        
-        .forgot-password {
-            text-align: center;
-            margin-top: 24px; 
-        }
-        
-        .forgot-password a {
-            color: #094412;
-            text-decoration: none;
-            font-size: 1.44em; 
-        }
-        
-        .forgot-password a:hover {
-            text-decoration: underline;
-        }
-        
-        .inputBox {
-            position: relative;
-            width: 720px; 
-            margin-bottom: 24px; 
-        }
-        
-        .inputBox input {
-            padding: 36px; 
-            width: 90%;
-            border-radius: 5px;
-            font-size: 1.8em; 
-        }
-        
-        .inputBox span {
-            font-size: 1.8em; 
-            padding: 36px;
-            top: 0px;
-        }
-        
-        #toggle {
-            width: 72px;
-            height: 72px; 
-            cursor: pointer;
-            right: 10px;
-        }
-        
-       }
