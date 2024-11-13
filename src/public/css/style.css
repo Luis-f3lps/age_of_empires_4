@@ -109,6 +109,7 @@ select, button {
     border-radius: 8px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     width: 45%;
+    visibility: hidden;
 }
 .civilizacao-unidades h3 {
     margin-top: 0;
