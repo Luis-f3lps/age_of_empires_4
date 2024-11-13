@@ -114,6 +114,9 @@ router.get('/civilizacoes_ptbr', async (req, res) => {
 router.get('/es', async (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'es.html'));
 });
+router.get('/en', async (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'en.html'));
+});
 router.get('/ptbr', async (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'ptbr.html'));
 });
@@ -123,7 +126,7 @@ app.use(router); // Utiliza o roteador configurado
 
 // Rota inicial
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  res.sendFile(path.join(__dirname, 'public', 'ptbr.html'));
 });
 
 export default app;
