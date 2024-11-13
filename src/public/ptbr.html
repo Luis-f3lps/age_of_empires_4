@@ -135,6 +135,8 @@ async function pesquisarUnidades() {
   const imagemCiv1 = document.getElementById('imagem-civilizacao-1');
   const imagemCiv2 = document.getElementById('imagem-civilizacao-2');
 
+  document.querySelector('#civilizacao1-unidades h3').innerText = civ1.nome;
+document.querySelector('#civilizacao2-unidades h3').innerText = civ2.nome;
   // Atualizar a imagem de cada civilização
   imagemCiv1.src = civ1.localizacao_imagem; // Caminho da imagem para a civilização 1
   imagemCiv1.style.display = 'block'; // Exibir a imagem
@@ -175,6 +177,7 @@ async function pesquisarUnidades() {
     resultadoDivs.forEach(div => {
         div.style.visibility = 'visible';  // Torna a div visível ao clicar no botão
     });
+
 
 }
         fetchCivilizacoes();
