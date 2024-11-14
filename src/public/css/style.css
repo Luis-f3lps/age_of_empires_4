@@ -181,7 +181,7 @@ border-radius: 5px;
 background-color: #555;
 }
 
-@media only screen and (orientation: portrait) and (min-height: 1230px) {
+@media only screen and (orientation: portrait) and (min-height: 1230px) and (max-width: 1080px){
 
     #resultado {
         display: contents;
