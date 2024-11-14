@@ -180,8 +180,7 @@ border-radius: 5px;
 .language-selector select::-webkit-scrollbar-thumb:hover {
 background-color: #555;
 }
-
-@media only screen and (max-width: 1080px){
+@media only screen and (max-width: 1080px) {
 
     #resultado {
         display: contents;
@@ -189,7 +188,7 @@ background-color: #555;
         justify-content: center;
         right: -100px;
     }
-    
+
     .civilizacao-unidades {
         background-color: #ffffff;
         padding: 20px;
@@ -197,8 +196,8 @@ background-color: #555;
         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
         width: 60%;
         margin-bottom: 20px;
-
     }
+
     #imagem-civilizacao-1, #imagem-civilizacao-2 {
         max-width: 90%;
         display: block;
@@ -208,6 +207,7 @@ background-color: #555;
         visibility: inherit;
     }
 }
+
 @media only screen and (min-width: 1961px) {
     #resultado {
         display: contents;
