@@ -78,7 +78,13 @@ background-color: #45a049; /* Efeito de hover para o botão */
 #imagem-civilizacao-1:hover, #imagem-civilizacao-2:hover {
 transform: scale(1.1); /* Efeito de hover nas imagens */
 }
-
+#imagem-civilizacao-1, #imagem-civilizacao-2 {
+    max-width: 90%;
+    display: block;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease;
+}
 
 select, button {
     width: 100%;
