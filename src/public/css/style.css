@@ -180,6 +180,17 @@ border-radius: 5px;
 .language-selector select::-webkit-scrollbar-thumb:hover {
 background-color: #555;
 }
+#civilizacao2-unidades {
+    overflow-x: auto;
+}
+
+#tabela-unidades-2 {
+    width: 100%;
+    max-width: 100%;
+    table-layout: fixed; /* Mantém as colunas em tamanho fixo */
+    word-wrap: break-word; /* Garante que o texto quebre e evite ultrapassar os limites */
+}
+@media only screen and (min-height: 1091px) {
 
     #resultado {
         display: contents;
@@ -205,3 +216,4 @@ background-color: #555;
         transition: transform 0.3s ease;
         visibility: inherit;
     }
+}
