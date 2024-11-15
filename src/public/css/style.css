@@ -210,3 +210,22 @@ background-color: #555;
             margin-bottom: 15px;
             font-size: xx-small;
         }}
+        @media screen and (min-width: 500px) {
+            #resultado {
+                display: contents;
+                gap: 20px;
+                width: 100%;
+                justify-content: center;
+            }
+            .civilizacao-unidades {
+                background-color: #ffffff;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+                width: 90%;
+                visibility: hidden;
+                display: inline-table;
+                font-size: xx-small;
+                margin-bottom: 15px;
+                font-size: xx-small;
+            }}
