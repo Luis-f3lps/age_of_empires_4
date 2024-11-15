@@ -104,7 +104,7 @@ function changeLanguage() {
     }
 }
 async function fetchUnidades(civilizacaoId) {
-    const response = await fetch(`/civilizacoes_es/${civilizacaoId}/uunidade_es`);
+    const response = await fetch(`/civilizacoes_es/${civilizacaoId}/unidade_es`);
     const unidades = await response.json();
     console.log(unidades);  // Verifique os dados retornados aqui
     return unidades;
@@ -148,24 +148,24 @@ async function pesquisarUnidades() {
   tabelaUnidades1.innerHTML = '';
   tabelaUnidades2.innerHTML = '';
 
-  unidades1.forEach(uunidade_es => {
+  unidades1.forEach(unidade_es => {
       const row = document.createElement('tr');
       row.innerHTML = `
-          <td>${uunidade_es.nome}</td>
-          <td>${uunidade_es.habilidade_especial || ''}</td>
-          <td>${uunidade_es.forte_contra || ''}</td>
-          <td>${uunidade_es.fraco_contra || ''}</td>
+          <td>${unidade_es.nome}</td>
+          <td>${unidade_es.habilidade_especial || ''}</td>
+          <td>${unidade_es.forte_contra || ''}</td>
+          <td>${unidade_es.fraco_contra || ''}</td>
       `;
       tabelaUnidades1.appendChild(row);
   });
 
-  unidades2.forEach(uunidade_es => {
+  unidades2.forEach(unidade_es => {
       const row = document.createElement('tr');
       row.innerHTML = `
-          <td>${uunidade_es.nome}</td>
-          <td>${uunidade_es.habilidade_especial || ''}</td>
-          <td>${uunidade_es.forte_contra || ''}</td>
-          <td>${uunidade_es.fraco_contra || ''}</td>
+          <td>${unidade_es.nome}</td>
+          <td>${unidade_es.habilidade_especial || ''}</td>
+          <td>${unidade_es.forte_contra || ''}</td>
+          <td>${unidade_es.fraco_contra || ''}</td>
       `;
       tabelaUnidades2.appendChild(row);
   });
