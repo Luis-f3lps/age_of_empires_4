@@ -217,3 +217,47 @@ background-color: #555;
         visibility: hidden;
     }
 }
+
+@media only screen and (min-width: 2000px) {
+
+    #resultado {
+        display: contents;
+        gap: 20px;
+        justify-content: center;
+        right: -100px;
+    }
+
+    .civilizacao-unidades {
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        width: 90%;
+        margin-bottom: 20px;
+    }
+
+    #imagem-civilizacao-1, #imagem-civilizacao-2 {
+        max-width: 90%;
+        display: block;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        transition: transform 0.3s ease;
+        visibility: hidden;
+    }}
+@media only screen and (max-width: 899px) {
+    #resultado {
+        display: contents;
+        gap: 20px;
+        width: 100%;
+        justify-content: center;
+    }
+    .civilizacao-unidades {
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        width: 90%;
+        visibility: hidden;
+        display: inline-table;
+        font-size: xx-small;
+    }}
