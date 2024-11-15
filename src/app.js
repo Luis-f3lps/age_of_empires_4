@@ -56,7 +56,7 @@ router.get('/civilizacoes', async (req, res) => {
   }
 });
 
-router.get('/civilizacoes_es/:id/unidades_es', async (req, res) => {
+router.get('/civilizacoes_es/:id/unidade_es', async (req, res) => {
   const { id } = req.params;
   try {
     const result = await pool.query(
