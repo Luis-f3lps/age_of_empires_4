@@ -48,7 +48,7 @@ router.get('/civilizacoes/:id/unidades', async (req, res) => {
 // Rota para buscar todas as civilizações
 router.get('/civilizacoes', async (req, res) => {
   try {
-    const result = await pool.query('SELECT id, nome FROM civilizacoes');
+    const result = await pool.query('SELECT id, nome, localizacao_imagem FROM civilizacoes ORDER BY nome ASC');
     res.json(result.rows);
   } catch (error) {
     console.error('Erro ao buscar civilizações:', error);
