@@ -21,7 +21,7 @@
     </div>
     <div class="container">
         <div class="civilizacao-item">
-            <img id="imagem-civilizacao-1" src="" alt="Imagem da Civilização 1" style="display: none;" />
+            <img id="imagem-civilizacao-1" src="" alt="Imagem da Civilização 1" style="display: none; max-width: 90%;" />
         </div>
 
         <div class="selecionar-civilizacoes">
@@ -39,7 +39,7 @@
         </div>
 
         <div class="civilizacao-item">
-            <img id="imagem-civilizacao-2" src="" alt="Imagem da Civilização 2" style="display: none;" />
+            <img id="imagem-civilizacao-2" src="" alt="Imagem da Civilização 2" style="display: none; max-width: 90%;" />
         </div>
     </div>
     
@@ -86,7 +86,7 @@
 
         async function fetchCivilizacoes() {
     try {
-        const response = await fetch('/civilizacoes_ptbr');  // Certifique-se que a URL está correta no servidor
+        const response = await fetch('/civilizacoes');  // Certifique-se que a URL está correta no servidor
         const civilizacoes = await response.json();
         
         const select1 = document.getElementById('civilizacao-select-1');
@@ -108,7 +108,7 @@
     }
 }
 async function fetchUnidades(civilizacaoId) {
-    const response = await fetch(`/civilizacoes_ptbr/${civilizacaoId}/unidades_ptbr`);
+    const response = await fetch(`/civilizacoes/${civilizacaoId}/unidades`);
     const unidades = await response.json();
     console.log(unidades);  // Verifique os dados retornados aqui
     return unidades;
@@ -126,7 +126,7 @@ async function pesquisarUnidades() {
   const unidades1 = await fetchUnidades(civ1Id);
   const unidades2 = await fetchUnidades(civ2Id);
 
-  const civilizacoes = await fetch('/civilizacoes_ptbr'); // Busca as civilizações e os caminhos das imagens
+  const civilizacoes = await fetch('/civilizacoes'); // Busca as civilizações e os caminhos das imagens
   const civilizacoesData = await civilizacoes.json();
 
   // Encontrar as civilizações com base no ID
@@ -136,6 +136,8 @@ async function pesquisarUnidades() {
   const imagemCiv1 = document.getElementById('imagem-civilizacao-1');
   const imagemCiv2 = document.getElementById('imagem-civilizacao-2');
 
+  document.querySelector('#civilizacao1-unidades h3').innerText = civ1.nome;
+  document.querySelector('#civilizacao2-unidades h3').innerText = civ2.nome;
   // Atualizar a imagem de cada civilização
   imagemCiv1.src = civ1.localizacao_imagem; // Caminho da imagem para a civilização 1
   imagemCiv1.style.display = 'block'; // Exibir a imagem
@@ -150,24 +152,24 @@ async function pesquisarUnidades() {
   tabelaUnidades1.innerHTML = '';
   tabelaUnidades2.innerHTML = '';
 
-  unidades1.forEach(unidades_ptbr => {
+  unidades1.forEach(unidades => {
       const row = document.createElement('tr');
       row.innerHTML = `
-          <td>${unidades_ptbr.nome}</td>
-          <td>${unidades_ptbr.habilidade_especial || ''}</td>
-          <td>${unidades_ptbr.forte_contra || ''}</td>
-          <td>${unidades_ptbr.fraco_contra || ''}</td>
+          <td>${unidades.nome}</td>
+          <td>${unidades.habilidade_especial || ''}</td>
+          <td>${unidades.forte_contra || ''}</td>
+          <td>${unidades.fraco_contra || ''}</td>
       `;
       tabelaUnidades1.appendChild(row);
   });
 
-  unidades2.forEach(unidades_ptbr => {
+  unidades2.forEach(unidades => {
       const row = document.createElement('tr');
       row.innerHTML = `
-          <td>${unidades_ptbr.nome}</td>
-          <td>${unidades_ptbr.habilidade_especial || ''}</td>
-          <td>${unidades_ptbr.forte_contra || ''}</td>
-          <td>${unidades_ptbr.fraco_contra || ''}</td>
+          <td>${unidades.nome}</td>
+          <td>${unidades.habilidade_especial || ''}</td>
+          <td>${unidades.forte_contra || ''}</td>
+          <td>${unidades.fraco_contra || ''}</td>
       `;
       tabelaUnidades2.appendChild(row);
   });
