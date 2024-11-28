@@ -217,7 +217,7 @@ background-color: #555;
             margin-bottom: 15px;
             font-size: xx-small;
         }}
-        @media screen and (max-width: 700px) {
+        @media screen and (max-width: 500px) {
             #resultado {
                 display: contents;
                 gap: 20px;
